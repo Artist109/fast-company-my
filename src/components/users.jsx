@@ -51,7 +51,10 @@ const Users = () => {
                 <td key="col-2">
                   {Object.values(qualities).map((qual) => {
                     return (
-                      <button className={"badge primary m-2 bg-" + qual.color}>
+                      <button
+                        key={qual._id}
+                        className={"badge primary m-2 bg-" + qual.color}
+                      >
                         {qual.name}
                       </button>
                     );
