@@ -4,9 +4,6 @@ import { fetchAll } from "../api/fake.api/user.api";
 
 const Users = () => {
   const [users, setUsers] = useState(API.users.fetchAll());
-  let usersQualityArrays = users.map((user) =>
-    console.log(user.qualities.map((qualityArrays) => qualityArrays.name))
-  );
   const params = [
     "Имя",
     "Качества",
@@ -15,66 +12,68 @@ const Users = () => {
     "Оценка",
     "",
   ];
-  return (
-    <table className="table">
-      <thead>
-        <tr>
-          {params.map((param) => (
-            <th scope="col">{param}</th>
-          ))}
-        </tr>
-      </thead>
-      <tbody>
-        {users.map((user, index) => (
-          <tr key={user._id}>
-            <td>{user.name.toString()}</td>
-            {/* <td>{user.qualities.map((qualityArrays) => qualityArrays)}</td> */}
-            <td>{user.profession.name.toString()}</td>
-            <td>{user.completedMeetings.toString()}</td>
-            <td>{user.rate.toString()}</td>
-            <td>
-              <button className="badge bg-danger">Delete</button>
-            </td>
+
+  const handleDeleteItem = (_id) => {
+    setUsers((prevState) => prevState.filter((user) => user._id !== _id));
+  };
+
+  const countPeopleOntheParty = () => {
+    console.log(users.length);
+    return users.length < 2 || users.length > 4
+      ? `${users.length} человек тусанёт с тобой сегодня`
+      : `${users.length} человека тусанут с тобой сегодня`;
+  };
+
+  return users.length === 0 ? (
+    <h1>
+      <span className="badge bg-danger">Никто не тусанет с тобой сегодня</span>
+    </h1>
+  ) : (
+    <>
+      <h1>
+        <span className="badge bg-primary">{countPeopleOntheParty()}</span>
+      </h1>
+      <table className="table">
+        <thead>
+          <tr>
+            {params.map((param) => (
+              <th key={param} scope="col">
+                {param}
+              </th>
+            ))}
           </tr>
-        ))}
-      </tbody>
-    </table>
+        </thead>
+        <tbody>
+          {users.map(
+            ({ _id, name, profession, qualities, completedMeetings, rate }) => (
+              <tr key={_id}>
+                <td key="col-1">{name}</td>
+                <td key="col-2">
+                  {Object.values(qualities).map((qual) => {
+                    return (
+                      <button className={"badge primary m-2 bg-" + qual.color}>
+                        {qual.name}
+                      </button>
+                    );
+                  })}
+                </td>
+                <td key="col-3">{profession.name}</td>
+                <td key="col-4">{completedMeetings}</td>
+                <td key="col-5">{rate}</td>
+                <td key="col-6">
+                  <span
+                    className="btn bg-danger"
+                    onClick={() => handleDeleteItem(_id)}
+                  >
+                    Delete
+                  </span>
+                </td>
+              </tr>
+            )
+          )}
+        </tbody>
+      </table>
+    </>
   );
 };
-
-const getQualities = (users, index) => {
-  let userQuality = users[index].qualities.map((quality) => quality);
-};
 export default Users;
-
-{
-  /* <table class="table">
-		<thead>
-			<tr>
-				<th scope="col">#</th>
-				<th scope="col">First</th>
-				<th scope="col">Last</th>
-				<th scope="col">Handle</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr>
-				<th scope="row">1</th>
-				<td>Mark</td>
-				<td>Otto</td>
-				<td>@mdo</td>
-			</tr>
-			<tr>
-				<th scope="row">2</th>
-				<td>Jacob</td>
-				<td>Thornton</td>
-				<td>@fat</td>
-			</tr>
-			<tr>
-				<th scope="row">3</th>
-				<td colspan="2">Larry the Bird</td>
-				<td>@twitter</td>
-			</tr>
-		</tbody>
-		</table> */
-}
