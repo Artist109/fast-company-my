@@ -64,12 +64,12 @@ const Users = () => {
                 <td key="col-4">{completedMeetings}</td>
                 <td key="col-5">{rate}</td>
                 <td key="col-6">
-                  <span
-                    className="btn bg-danger"
+                  <button
+                    className="btn btn-danger"
                     onClick={() => handleDeleteItem(_id)}
                   >
                     Delete
-                  </span>
+                  </button>
                 </td>
               </tr>
             )
