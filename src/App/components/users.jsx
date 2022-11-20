@@ -1,7 +1,5 @@
 import React, { useState } from "react";
-import API from "./api";
-import { fetchAll } from "./api/fake.api/user.api";
-import SearchStatus from "./searchStatus";
+// import SearchStatus from "./searchStatus";
 
 const Users = (props) => {
   console.log("props", props);
@@ -16,7 +14,7 @@ const Users = (props) => {
 
   return (
     <>
-      <SearchStatus length={props.users.length} />
+      {/* <SearchStatus length={props.users.length} /> */}
       {props.users.length > 0 && (
         <table className="table">
           <thead>
