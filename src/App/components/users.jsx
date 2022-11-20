@@ -1,5 +1,6 @@
 import React from "react";
 import User from "./user";
+import Quality from "./qualitiy";
 
 const Users = (props) => {
   console.log("props", props);
@@ -38,7 +39,8 @@ const Users = (props) => {
                 <tr key={_id}>
                   <td key="col-1">{name}</td>
                   <td key="col-2">
-                    {Object.values(qualities).map((qual) => {
+                    <Quality {...qualities} />
+                    {/* {Object.values(qualities).map((qual) => {
                       return (
                         <button
                           key={qual._id}
@@ -47,7 +49,7 @@ const Users = (props) => {
                           {qual.name}
                         </button>
                       );
-                    })}
+                    })} */}
                   </td>
                   <td key="col-3">{profession.name}</td>
                   <td key="col-4">{completedMeetings}</td>
