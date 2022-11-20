@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import API from "../api";
-import { fetchAll } from "../api/fake.api/user.api";
+import API from "./api";
+import { fetchAll } from "./api/fake.api/user.api";
 import SearchStatus from "./searchStatus";
 
 const Users = () => {
