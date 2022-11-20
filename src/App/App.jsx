@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import Users from "./components/users";
 import API from "./components/api";
+import User from "./components/user";
+import Users from "./components/users";
 import SearchStatus from "./components/searchStatus";
 
 const App = () => {
@@ -10,6 +11,7 @@ const App = () => {
   };
   return (
     <>
+      <User users={users} />;
       <SearchStatus length={users.length} />
       <Users users={users} onDelete={handleDeleteItem} />
     </>

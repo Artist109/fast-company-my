@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-// import SearchStatus from "./searchStatus";
+import React from "react";
+import User from "./user";
 
 const Users = (props) => {
   console.log("props", props);
@@ -14,7 +14,6 @@ const Users = (props) => {
 
   return (
     <>
-      {/* <SearchStatus length={props.users.length} /> */}
       {props.users.length > 0 && (
         <table className="table">
           <thead>
