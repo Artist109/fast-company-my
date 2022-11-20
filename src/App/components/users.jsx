@@ -1,10 +1,9 @@
 import React, { useState } from "react";
 import API from "../api";
-import { fetchAll } from "../api/fake.api/user.api";
-import SearchStatus from "./searchStatus";
 
 const Users = () => {
   const [users, setUsers] = useState(API.users.fetchAll());
+
   const params = [
     "Имя",
     "Качества",
@@ -13,14 +12,31 @@ const Users = () => {
     "Оценка",
     "",
   ];
+  const handleDelete = (userId) => {
+    setUsers(users.filter((user) => user._id !== userId));
+  };
 
-  const handleDeleteItem = (_id) => {
-    setUsers((prevState) => prevState.filter((user) => user._id !== _id));
+  const renderPhrase = (number) => {
+    const lastOne = Number(number.toString().slice(-1));
+    if (number > 4 && number < 15) return "человек тусанет";
+    if ([2, 3, 4].indexOf(lastOne) >= 0) return "человека тусанут";
+    if (lastOne === 1) return "человек тусанет";
+    return "человек тусанет";
   };
 
   return (
     <>
-      <SearchStatus length={users.length} />
+      <h2>
+        <span
+          className={"badge " + (users.length > 0 ? "bg-primary" : "bg-danger")}
+        >
+          {users.length > 0
+            ? `${
+                users.length + " " + renderPhrase(users.length)
+              } с тобой сегодня`
+            : "Никто с тобой не тусанет"}
+        </span>
+      </h2>
       {users.length > 0 && (
         <table className="table">
           <thead>
@@ -62,7 +78,7 @@ const Users = () => {
                   <td key="col-6">
                     <button
                       className="btn btn-danger"
-                      onClick={() => handleDeleteItem(_id)}
+                      onClick={() => handleDelete(_id)}
                     >
                       Delete
                     </button>

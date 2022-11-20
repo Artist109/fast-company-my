@@ -1,11 +1,11 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import "bootstrap/dist/css/bootstrap.css";
-import Users from "./components/users";
 import reportWebVitals from "./reportWebVitals";
+import App from "./App/app";
 
 const root = ReactDOM.createRoot(document.querySelector("#root"));
 
-root.render(<Users />);
+root.render(<App />);
 
 reportWebVitals();
