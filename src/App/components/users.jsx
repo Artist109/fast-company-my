@@ -3,8 +3,8 @@ import API from "./api";
 import { fetchAll } from "./api/fake.api/user.api";
 import SearchStatus from "./searchStatus";
 
-const Users = () => {
-  const [users, setUsers] = useState(API.users.fetchAll());
+const Users = (props) => {
+  console.log("props", props);
   const params = [
     "Имя",
     "Качества",
@@ -14,14 +14,10 @@ const Users = () => {
     "",
   ];
 
-  const handleDeleteItem = (_id) => {
-    setUsers((prevState) => prevState.filter((user) => user._id !== _id));
-  };
-
   return (
     <>
-      <SearchStatus length={users.length} />
-      {users.length > 0 && (
+      <SearchStatus length={props.users.length} />
+      {props.users.length > 0 && (
         <table className="table">
           <thead>
             <tr>
@@ -33,7 +29,7 @@ const Users = () => {
             </tr>
           </thead>
           <tbody>
-            {users.map(
+            {props.users.map(
               ({
                 _id,
                 name,
@@ -62,7 +58,7 @@ const Users = () => {
                   <td key="col-6">
                     <button
                       className="btn btn-danger"
-                      onClick={() => handleDeleteItem(_id)}
+                      onClick={() => props.onDelete(_id)}
                     >
                       Delete
                     </button>

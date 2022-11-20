@@ -3,9 +3,13 @@ import Users from "./components/users";
 import API from "./components/api";
 
 const App = () => {
+  const [users, setUsers] = useState(API.users.fetchAll());
+  const handleDeleteItem = (_id) => {
+    setUsers((prevState) => prevState.filter((user) => user._id !== _id));
+  };
   return (
     <>
-      <Users />
+      <Users users={users} onDelete={handleDeleteItem} />
     </>
   );
 };

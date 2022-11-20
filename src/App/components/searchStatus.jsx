@@ -1,6 +1,6 @@
 import React from "react";
 const SearchStatus = ({ length }) => {
-  console.log(length);
+  console.log("SearchStatus", length);
   const renderPhrase = () => {
     const lastOne = Number(length.toString().slice(-1));
     if (length > 4 && length < 15) return "человек тусанет";
