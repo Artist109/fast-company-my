@@ -1,15 +1,16 @@
 import React from "react";
 import User from "./user";
 import Quality from "./qualitiy";
+import Bookmark from "./bookmark";
 
 const Users = (props) => {
-  console.log("props", props);
   const params = [
     "Имя",
     "Качества",
     "Профессия",
     "Встретился, раз",
     "Оценка",
+    "Избранное",
     "",
   ];
 
@@ -35,25 +36,26 @@ const Users = (props) => {
                 qualities,
                 completedMeetings,
                 rate,
+                bookmark,
               }) => (
                 <tr key={_id}>
                   <td key="col-1">{name}</td>
                   <td key="col-2">
                     <Quality {...qualities} />
-                    {/* {Object.values(qualities).map((qual) => {
-                      return (
-                        <button
-                          key={qual._id}
-                          className={"badge primary m-2 bg-" + qual.color}
-                        >
-                          {qual.name}
-                        </button>
-                      );
-                    })} */}
                   </td>
                   <td key="col-3">{profession.name}</td>
                   <td key="col-4">{completedMeetings}</td>
                   <td key="col-5">{rate}</td>
+                  <td>
+                    <button
+                      onClick={() => props.onToogleBookmark(_id, bookmark)}
+                    >
+                      <i
+                        className="bi bi-bookmark-heart"
+                        style={{ color: "blue" }}
+                      ></i>
+                    </button>
+                  </td>
                   <td key="col-6">
                     <button
                       className="btn btn-danger"
