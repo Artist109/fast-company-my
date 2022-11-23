@@ -1,37 +1,56 @@
 import React, { useState } from "react";
 import API from "./components/api";
-import User from "./components/user";
 import Users from "./components/users";
 import SearchStatus from "./components/searchStatus";
-import Bookmark from "./components/bookmark";
 
 const App = () => {
   const [users, setUsers] = useState(API.users.fetchAll());
+
+  const params = [
+    "Имя",
+    "Качества",
+    "Профессия",
+    "Встретился, раз",
+    "Оценка",
+    "Избранное",
+    "",
+  ];
+
   const handleDeleteItem = (_id) => {
     setUsers((prevState) => prevState.filter((user) => user._id !== _id));
   };
 
-  const handleToogleBookmark = (id, bookmarkUserState) => {
-    setUsers((prevState) =>
-      prevState.map((user) =>
-        user.bookmark === true && user._id === id
-          ? { ...user, bookmark: false }
-          : { ...user, bookmark: true }
-      )
-    );
+  // const handleToogleBookmark = (bookmarkUserState) => {
+  //   setUsers((prevState) =>
+  //     prevState.map((user) =>
+  //       user.bookmark === true && user._id === id
+  //         ? { ...user, bookmark: false }
+  //         : { ...user, bookmark: true }
+  //     )
+  //   );
 
-    console.log(users);
-  };
+  //   console.log(users);
+  // };
 
   return (
     <>
-      <User users={users} />;
       <SearchStatus length={users.length} />
-      <Users
-        users={users}
-        onDelete={handleDeleteItem}
-        onToogleBookmark={handleToogleBookmark}
-      />
+      {users.length > 0 && (
+        <table className="table">
+          <thead>
+            <tr>
+              {params.map((param) => (
+                <th key={param} scope="col">
+                  {param}
+                </th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            <Users users={users} onDelete={handleDeleteItem} />
+          </tbody>
+        </table>
+      )}
     </>
   );
 };
