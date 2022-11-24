@@ -5,7 +5,6 @@ import SearchStatus from "./components/searchStatus";
 
 const App = () => {
   const [users, setUsers] = useState(API.users.fetchAll());
-  let updatedUsers = [];
   const params = [
     "Имя",
     "Качества",
@@ -19,8 +18,6 @@ const App = () => {
   const handleDeleteItem = (_id) => {
     setUsers((prevState) => prevState.filter((user) => user._id !== _id));
   };
-  console.log("prevState", users);
-  console.log("prevState", updatedUsers);
 
   const handleToogleBookmark = (id) => {
     console.log("handleToogleBookmark", id);
