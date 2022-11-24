@@ -20,17 +20,16 @@ const App = () => {
     setUsers((prevState) => prevState.filter((user) => user._id !== _id));
   };
 
-  // const handleToogleBookmark = (bookmarkUserState) => {
-  //   setUsers((prevState) =>
-  //     prevState.map((user) =>
-  //       user.bookmark === true && user._id === id
-  //         ? { ...user, bookmark: false }
-  //         : { ...user, bookmark: true }
-  //     )
-  //   );
-
-  //   console.log(users);
-  // };
+  const handleToogleBookmark = (id, bookmarkUserState) => {
+    // setUsers((prevState) =>
+    //   prevState.map((user) =>
+    //     user.bookmark === true && user._id === id
+    //       ? { ...user, bookmark: false }
+    //       : { ...user, bookmark: true }
+    //   )
+    // );
+    console.log("handleToogleBookmark", id, bookmarkUserState);
+  };
 
   return (
     <>
@@ -47,7 +46,11 @@ const App = () => {
             </tr>
           </thead>
           <tbody>
-            <Users users={users} onDelete={handleDeleteItem} />
+            <Users
+              users={users}
+              onDelete={handleDeleteItem}
+              onToogle={handleToogleBookmark}
+            />
           </tbody>
         </table>
       )}
