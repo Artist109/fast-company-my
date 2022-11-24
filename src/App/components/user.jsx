@@ -3,7 +3,7 @@ import Quality from "./qualitiy";
 import Bookmark from "./bookmark";
 
 const User = (props) => {
-  console.log("User", props);
+  // console.log("User", props);
   return (
     <>
       <td key="col-1">{props.name}</td>
@@ -14,7 +14,11 @@ const User = (props) => {
       <td key="col-4">{props.completedMeetings}</td>
       <td key="col-5">{props.rate}</td>
       <td key="col-6">
-        <Bookmark bookmark={props.bookmark} />
+        <Bookmark
+          id={props.id}
+          bookmark={props.bookmark}
+          onToogle={props.onToogle}
+        />
       </td>
     </>
   );

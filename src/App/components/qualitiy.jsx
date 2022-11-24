@@ -2,7 +2,7 @@ import { queryAllByTestId } from "@testing-library/react";
 import React from "react";
 
 function Quality(props) {
-  console.log("Quality", props);
+  // console.log("Quality", props);
   return (
     <>
       {Object.values(props).map((qual) => (

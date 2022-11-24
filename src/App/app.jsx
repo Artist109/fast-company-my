@@ -21,15 +21,16 @@ const App = () => {
   };
 
   const handleToogleBookmark = (id, bookmarkUserState) => {
-    // setUsers((prevState) =>
-    //   prevState.map((user) =>
-    //     user.bookmark === true && user._id === id
-    //       ? { ...user, bookmark: false }
-    //       : { ...user, bookmark: true }
-    //   )
-    // );
-    console.log("handleToogleBookmark", id, bookmarkUserState);
+    console.log("handleToogleBookmark", users);
+    setUsers((prevState) =>
+      prevState.map((user) =>
+        user._id === id && bookmarkUserState === false
+          ? { ...user, bookmark: true }
+          : { ...user, bookmark: false }
+      )
+    );
   };
+  console.log("users", users);
 
   return (
     <>

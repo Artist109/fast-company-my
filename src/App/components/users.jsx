@@ -2,7 +2,7 @@ import React from "react";
 import User from "./user";
 
 const Users = (props) => {
-  console.log("Users", props);
+  // console.log("Users", props);
   return (
     <>
       {props.users.map(
@@ -17,12 +17,14 @@ const Users = (props) => {
         }) => (
           <tr key={_id}>
             <User
+              id={_id}
               name={name}
               profession={profession}
               qualities={qualities}
               completedMeetings={completedMeetings}
               rate={rate}
               bookmark={bookmark}
+              onToogle={props.onToogle}
             />
             <td key="col-7">
               <button
