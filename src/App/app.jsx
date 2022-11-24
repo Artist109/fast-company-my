@@ -22,11 +22,11 @@ const App = () => {
   console.log("prevState", users);
   console.log("prevState", updatedUsers);
 
-  const handleToogleBookmark = (id, bookmarkUserState) => {
-    console.log("handleToogleBookmark", id, bookmarkUserState);
-    setUsers((prevState) =>
-      prevState.map((user) =>
-        user._id === id ? { ...user, bookmark: !bookmarkUserState } : user
+  const handleToogleBookmark = (id) => {
+    console.log("handleToogleBookmark", id);
+    setUsers((prev) =>
+      prev.map((user) =>
+        user._id === id ? { ...user, bookmark: !user.bookmark } : user
       )
     );
   };

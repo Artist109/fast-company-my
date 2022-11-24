@@ -3,7 +3,7 @@ import React from "react";
 function Bookmark(props) {
   // console.log("Bookmark", props);
   return (
-    <button onClick={() => props.onToogle(props.id, props.bookmark)}>
+    <button onClick={() => props.onToogle(props.id)}>
       {props.bookmark === false ? (
         <i className="bi bi-bookmark-heart" style={{ color: "blue" }}></i>
       ) : (
