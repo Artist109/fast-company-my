@@ -1,10 +1,10 @@
 import React from "react";
 
-function Bookmark(bookmarkState) {
-  console.log("Bookmark", bookmarkState);
+function Bookmark(props) {
+  console.log("Bookmark", props.bookmark === false);
   return (
     <button>
-      {bookmarkState === false ? (
+      {props.bookmark === false ? (
         <i className="bi bi-bookmark-heart" style={{ color: "blue" }}></i>
       ) : (
         <i className="bi bi-bookmark-heart-fill" style={{ color: "blue" }}></i>
